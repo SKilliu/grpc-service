@@ -5,6 +5,8 @@ import (
 	"grpc-service/proto/protogo"
 	"log"
 
+	"github.com/SKilliu/grpc-service"
+
 	"google.golang.org/grpc"
 )
 
