@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package protogo;
+
+service CoordinatesSaver {
+  rpc SaveCoordinates(SaveRequest) returns (SaveResponse) {}
+}
+
+message SaveRequest {
+  string location = 1;
+  float longitude = 2;
+  float latitude = 3;
+}
+
+message SaveResponse {
+  string operationResult = 1;
+}

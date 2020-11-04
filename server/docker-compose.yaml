@@ -1,0 +1,44 @@
+version: "2.1"
+networks:
+  project:
+
+services:
+  grpc-server:
+    container_name: grpc-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - GRPC_SERVER_HOST=localhost
+      - GRPC_SERVER_PORT=8080
+      - GRPC_SERVER_DATABASE_NAME=postgres
+      - GRPC_SERVER_DATABASE_HOST=grpc-server-db
+      - GRPC_SERVER_DATABASE_PORT=5430
+      - GRPC_SERVER_DATABASE_USER=postgres
+      - GRPC_SERVER_DATABASE_PASSWORD=1234567
+      - GRPC_SERVER_DATABASE_SSL=disable
+    ports:
+      - 8080:8080
+    command: bash -c "./grpc-server run"
+#    depends_on:
+#      grpc-server-db:
+#        condition: service_healthy
+    networks:
+      - project
+
+#  grpc-server-db:
+#    container_name: grpc-server-db
+#    image: postgres:10
+#    environment:
+#      - POSTGRES_DB=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=1234567
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U postgres"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+#    volumes:
+#      - ./data/grpc-server-db:/var/lib/postgresql/data
+#    networks:
+#      - project
