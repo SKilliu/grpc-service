@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/SKilliu/grpc-service/proto/protogo"
+	"github.com/SKilliu/grpc-service/server/proto/protogo"
 
 	"github.com/SKilliu/grpc-service/server/config"
 

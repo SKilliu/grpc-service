@@ -19,7 +19,7 @@ services:
       - GRPC_SERVER_DATABASE_SSL=disable
     ports:
       - 8080:8080
-    command: bash -c "./grpc-server run"
+    command: bash -c "./server run"
 #    depends_on:
 #      grpc-server-db:
 #        condition: service_healthy
