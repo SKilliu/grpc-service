@@ -2,7 +2,8 @@ package config
 
 import (
 	"context"
-	"grpc-service/server/proto/protogo"
+
+	"github.com/SKilliu/grpc-service/proto/protogo"
 
 	"github.com/caarlos0/env"
 )

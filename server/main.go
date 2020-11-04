@@ -2,9 +2,11 @@ package app
 
 import (
 	"fmt"
-	"grpc-service/server/config"
-	"grpc-service/server/proto/protogo"
 	"net"
+
+	"github.com/SKilliu/grpc-service/proto/protogo"
+
+	"github.com/SKilliu/grpc-service/server/config"
 
 	"google.golang.org/grpc"
 

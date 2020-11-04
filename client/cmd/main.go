@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"grpc-service/client/proto/protogo"
+	"grpc-service/proto/protogo"
 	"log"
 
 	"google.golang.org/grpc"
