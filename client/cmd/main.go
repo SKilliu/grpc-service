@@ -1,32 +1,23 @@
 package main
 
 import (
-	"context"
-	"log"
+	app "grpc-service/client"
+	"grpc-service/client/config"
 
 	"github.com/pkg/errors"
-
-	"github.com/SKilliu/grpc-service/proto/protogo"
-
-	"google.golang.org/grpc"
 )
 
+const pathToConfigFile = "./static/envs.yaml"
+
 func main() {
-	conn, err := grpc.Dial("localhost:5300", grpc.WithInsecure())
-	if err != nil {
-		log.Fatal(err)
+	apiConfig := config.New()
+	log := apiConfig.Log()
+
+	//docs.SwaggerInfo.Host = fmt.Sprintf("%s:%s", apiConfig.HTTP().Host, apiConfig.HTTP().Port)
+	config.UploadEnvironmentVariables(pathToConfigFile)
+	api := app.New(apiConfig)
+	if err := api.Start(); err != nil {
+		log.WithError(err)
+		panic(errors.Wrap(err, "failed to start api server"))
 	}
-
-	client := protogo.NewCoordinatesSaverClient(conn)
-
-	resp, err := client.SaveCoordinates(context.Background(), &protogo.SaveRequest{
-		Location:  "Kharkiv",
-		Longitude: 10,
-		Latitude:  11,
-	})
-	if err != nil {
-		log.Fatal(errors.Wrap(err, "failed to send request"))
-	}
-
-	log.Println(resp.GetOperationResult())
 }

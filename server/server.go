@@ -41,5 +41,7 @@ func (s *GRPCServer) SaveCoordinates(ctx context.Context, req *protogo.SaveReque
 		}, err
 	}
 
+	s.log.Info(req)
+
 	return &protogo.SaveResponse{OperationResult: "Operation success"}, nil
 }
