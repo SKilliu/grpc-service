@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/SKilliu/grpc-service/server/proto/protogo"
+	"github.com/SKilliu/grpc-service/server"
+
+	"github.com/SKilliu/grpc-service/proto/protogo"
 
 	"github.com/SKilliu/grpc-service/config"
 
@@ -38,7 +40,7 @@ func (a *App) Start() error {
 		Info(fmt.Sprintf("listenig addr =  %s", serverHost))
 
 	s := grpc.NewServer()
-	srv := &config.GRPCServer{}
+	srv := server.New(conf)
 
 	protogo.RegisterCoordinatesSaverServer(s, srv)
 	l, err := net.Listen("tcp", serverHost)

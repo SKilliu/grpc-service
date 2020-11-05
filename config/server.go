@@ -1,21 +1,12 @@
 package config
 
 import (
-	"context"
-
-	"github.com/SKilliu/grpc-service/proto/protogo"
-
 	"github.com/caarlos0/env"
 )
 
 type GRPCServer struct {
 	Host string `env:"GRPC_SERVER_HOST,required"`
 	Port string `env:"GRPC_SERVER_PORT,required"`
-}
-
-func (s *GRPCServer) SaveCoordinates(ctx context.Context, req *protogo.SaveRequest) (*protogo.SaveResponse, error) {
-
-	return &protogo.SaveResponse{OperationResult: "ok"}, nil
 }
 
 func (c *ConfigImpl) GRPCServer() *GRPCServer {

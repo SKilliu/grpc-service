@@ -8,6 +8,8 @@ import (
 // QInterface represent interface of the access to the user db.
 type QInterface interface {
 	DBX() *dbx.DB
+
+	CoordinatesQ() CoordinatesQ
 }
 
 // DB wraps dbx interface.
