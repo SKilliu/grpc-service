@@ -2,8 +2,7 @@ package config
 
 import (
 	"fmt"
-
-	"github.com/SKilliu/grpc-service/server/db"
+	"grpc-service/db"
 
 	"github.com/caarlos0/env"
 	validation "github.com/go-ozzo/ozzo-validation"

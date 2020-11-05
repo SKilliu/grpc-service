@@ -1,9 +1,8 @@
 package main
 
 import (
-	"github.com/SKilliu/grpc-service/server/config"
-
-	app "github.com/SKilliu/grpc-service/server"
+	app "github.com/SKilliu/grpc-service/app"
+	"github.com/SKilliu/grpc-service/config"
 
 	"github.com/pkg/errors"
 )

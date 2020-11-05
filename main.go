@@ -6,7 +6,7 @@ import (
 
 	"github.com/SKilliu/grpc-service/server/proto/protogo"
 
-	"github.com/SKilliu/grpc-service/server/config"
+	"grpc-service/config"
 
 	"google.golang.org/grpc"
 

@@ -6,7 +6,7 @@ services:
   grpc-server:
     container_name: grpc-server
     build:
-      context: server
+      context: .
       dockerfile: Dockerfile
     environment:
       - GRPC_SERVER_HOST=localhost

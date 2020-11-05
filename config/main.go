@@ -5,7 +5,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/SKilliu/grpc-service/server/db"
+	"grpc-service/db"
 
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v2"
