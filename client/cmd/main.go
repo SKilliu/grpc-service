@@ -4,13 +4,15 @@ import (
 	"context"
 	"log"
 
-	"github.com/SKilliu/grpc-service/server/proto/protogo"
+	"github.com/pkg/errors"
+
+	"github.com/SKilliu/grpc-service/proto/protogo"
 
 	"google.golang.org/grpc"
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost:8080", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:5300", grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -23,7 +25,7 @@ func main() {
 		Latitude:  11,
 	})
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(errors.Wrap(err, "failed to send request"))
 	}
 
 	log.Println(resp.GetOperationResult())
