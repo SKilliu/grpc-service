@@ -2,10 +2,9 @@ package main
 
 import (
 	"context"
-	"grpc-service/proto/protogo"
 	"log"
 
-	"github.com/SKilliu/grpc-service"
+	"github.com/SKilliu/grpc-service/server/proto/protogo"
 
 	"google.golang.org/grpc"
 )
