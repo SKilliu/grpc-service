@@ -13,6 +13,7 @@ github.com/SKilliu/grpc-service v0.0.0-20201105073446-3783d6acaf3b h1:VdkrWpbino
 github.com/SKilliu/grpc-service v0.0.0-20201105073446-3783d6acaf3b/go.mod h1:a4SF9fVZdc/xxCG2s5/J0xc27Y3XiqrVyCrBhP1E5Tw=
 github.com/SKilliu/grpc-service/server v0.0.0-20201104230452-a22209e60b4d h1:B6WB+aPY9EzHaUh0g4xD9XX41rEK20y3kBh/txO22Z8=
 github.com/SKilliu/grpc-service/server v0.0.0-20201104230452-a22209e60b4d/go.mod h1:rdXOkWZA//1rxhgC1nMXmcTvFibPCiduU3iePAOcbAE=
+github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751 h1:JYp7IbQjafoB+tBA3gMyHYHrpOtNuDiK/uB5uXxq5wM=
 github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/caarlos0/env v3.5.0+incompatible h1:Yy0UN8o9Wtr/jGHZDpCBLpNrzcFLLM2yixi/rBrKyJs=
 github.com/caarlos0/env v3.5.0+incompatible/go.mod h1:tdCsowwCzMLdkqRYDlHpZCp2UooDD3MspDBjZ2AD02Y=

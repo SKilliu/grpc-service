@@ -1,7 +1,79 @@
+definitions:
+  ErrorResp:
+    properties:
+      code:
+        example: 500
+        type: integer
+      message:
+        example: INTERNAL_SERVER_ERROR
+        type: string
+    type: object
+  SaveCoordinatesReq:
+    properties:
+      latitude:
+        example: 12.345
+        type: number
+      location:
+        example: London
+        type: string
+      longitude:
+        example: 12.345
+        type: number
+    type: object
+  StatusResp:
+    properties:
+      status:
+        type: string
+    type: object
 info:
   contact: {}
   license: {}
   title: grpc-service
   version: "1.0"
-paths: {}
+paths:
+  /coordinates:
+    post:
+      consumes:
+      - application/json
+      description: Send coordinates to grpc server for saving in a database
+      parameters:
+      - description: Body for save coordinates request
+        in: body
+        name: JSON
+        required: true
+        schema:
+          $ref: '#/definitions/SaveCoordinatesReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: ""
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResp'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResp'
+      summary: Send coordinates to grpc server
+      tags:
+      - coordinates
+  /status:
+    get:
+      consumes:
+      - application/json
+      description: Check connection to client
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/StatusResp'
+      summary: Healthcheck
+      tags:
+      - healthcheck
 swagger: "2.0"

@@ -10,11 +10,23 @@ import (
 )
 
 type SaveCoordinatesReq struct {
-	Location  string  `json:"location"`
-	Latitude  float32 `json:"latitude"`
-	Longitude float32 `json:"longitude"`
-}
+	Location  string  `json:"location" example:"London"`
+	Latitude  float32 `json:"latitude" example:"12.345"`
+	Longitude float32 `json:"longitude" example:"12.345"`
+} //@name SaveCoordinatesReq
 
+// Coordinates godoc
+// @Summary Send coordinates to grpc server
+// @Tags coordinates
+// @Consume application/json
+// @Param JSON body SaveCoordinatesReq true "Body for save coordinates request"
+// @Description Send coordinates to grpc server for saving in a database
+// @Accept  json
+// @Produce  json
+// @Success 200 {} http.StatusOK
+// @Failure 400 {object} errs.ErrResp
+// @Failure 500 {object} errs.ErrResp
+// @Router /coordinates [post]
 func (h *Handler) SaveCoordinates(c echo.Context) error {
 	var req SaveCoordinatesReq
 

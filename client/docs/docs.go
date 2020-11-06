@@ -24,7 +24,117 @@ var doc = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/coordinates": {
+            "post": {
+                "description": "Send coordinates to grpc server for saving in a database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "coordinates"
+                ],
+                "summary": "Send coordinates to grpc server",
+                "parameters": [
+                    {
+                        "description": "Body for save coordinates request",
+                        "name": "JSON",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SaveCoordinatesReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": ""
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/status": {
+            "get": {
+                "description": "Check connection to client",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "healthcheck"
+                ],
+                "summary": "Healthcheck",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/StatusResp"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ErrorResp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 500
+                },
+                "message": {
+                    "type": "string",
+                    "example": "INTERNAL_SERVER_ERROR"
+                }
+            }
+        },
+        "SaveCoordinatesReq": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number",
+                    "example": 12.345
+                },
+                "location": {
+                    "type": "string",
+                    "example": "London"
+                },
+                "longitude": {
+                    "type": "number",
+                    "example": 12.345
+                }
+            }
+        },
+        "StatusResp": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }`
 
 type swaggerInfo struct {

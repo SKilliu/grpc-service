@@ -1,15 +1,12 @@
 package server
 
 import (
+	echoSwagger "github.com/swaggo/echo-swagger"
 	"grpc-service/client/config"
-
-	"time"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
-
-const durationThreshold = time.Second * 10
 
 func Router(cfg config.Config) *echo.Echo {
 	router := echo.New()
@@ -31,8 +28,10 @@ func Router(cfg config.Config) *echo.Echo {
 		middleware.LoggerWithConfig(middleware.DefaultLoggerConfig),
 	)
 
+	router.GET("/swagger/*", echoSwagger.WrapHandler)
+
 	router.GET("/status", provider.healthcheck.GetStatus)
-	router.POST("/connect", provider.coordinates.SaveCoordinates)
+	router.POST("/coordinates", provider.coordinates.SaveCoordinates)
 
 	return router
 }
