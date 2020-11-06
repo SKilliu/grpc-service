@@ -9,6 +9,8 @@ import (
 
 const pathToConfigFile = "./static/envs.yaml"
 
+// @title grpc-service
+// @version 1.0
 func main() {
 	apiConfig := config.New()
 	log := apiConfig.Log()

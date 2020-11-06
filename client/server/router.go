@@ -7,21 +7,22 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi"
-	"github.com/go-chi/chi/middleware"
-	"github.com/go-chi/cors"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 const durationThreshold = time.Second * 10
 
-func Router(cfg config.Config) chi.Router {
-	router := chi.NewRouter()
+func Router(cfg config.Config) *echo.Echo {
+	router := echo.New()
 
-	cors := cors.New(cors.Options{
-		AllowedOrigins:   []string{"*"},
-		AllowedMethods:   []string{"*", "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"},
-		AllowedHeaders:   []string{"*", "Accept", "Authorization", "Content-Type", "X-CSRF-Token", "x-auth", "Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Credentials"},
-		ExposedHeaders:   []string{"*", "Link"},
+	cors := middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"*", "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"},
+		AllowHeaders:     []string{"*", "Accept", "Authorization", "Content-Type", "X-CSRF-Token", "x-auth", "Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Credentials"},
+		ExposeHeaders:    []string{"*", "Link"},
 		AllowCredentials: true,
 		MaxAge:           300,
 	})
@@ -29,16 +30,13 @@ func Router(cfg config.Config) chi.Router {
 	provider := NewProvider(cfg)
 
 	router.Use(
-		cors.Handler,
-		middleware.Recoverer,
-		middlewares.Logger(cfg.Log(), durationThreshold),
+		cors,
+		middleware.Recover(),
+		middleware.LoggerWithConfig(middleware.DefaultLoggerConfig),
 	)
 
-	router.Get("/status", func(w http.ResponseWriter, r *http.Request) {
-		_, _ = w.Write([]byte("Hello gRPC Client API"))
-	})
-
-	router.Post("/coordinates", provider.coordinates.SaveCoordinates)
+	router.GET("/status", provider.healthcheck.Status)
+	router.POST("/connect", provider.coordinates.SaveCoordinates)
 
 	return router
 }
