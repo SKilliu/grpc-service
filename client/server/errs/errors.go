@@ -1,31 +1,21 @@
 package errs
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/pkg/errors"
 )
 
-const (
-	headerTokenField = "Authorization"
-)
+type ErrResp struct {
+	Message string `json:"message" example:"INTERNAL_SERVER_ERROR"`
+	Code    int64  `json:"code" example:"500"`
+} //@name ErrorResp
+
+func (e ErrResp) ToError() error {
+	return errors.New(e.Message)
+}
 
 var (
-	BadParamInBodyErr = errors.New("BAD_PARAM_IN_BODY")
-	InternalServerErr = errors.New("INTERNAL_SERVER_ERROR")
+	BadParamInBodyErr = ErrResp{"BAD_PARAM_IN_BODY", http.StatusBadRequest}
+	InternalServerErr = ErrResp{"INTERNAL_SERVER_ERROR", http.StatusInternalServerError}
 )
-
-func BadRequest(w http.ResponseWriter, err error) {
-	w.WriteHeader(http.StatusBadRequest)
-	_, _ = w.Write(
-		[]byte(fmt.Sprintf(`{"code": %d, "error": "%s"}`, http.StatusBadRequest, err)),
-	)
-}
-
-func InternalError(w http.ResponseWriter) {
-	w.WriteHeader(http.StatusInternalServerError)
-	_, _ = w.Write(
-		[]byte(fmt.Sprintf(`{"code": %d, "error": "%s"}`, http.StatusInternalServerError, InternalServerErr)),
-	)
-}

@@ -1,6 +1,8 @@
 package healthcheck
 
 import (
+	"grpc-service/client/config"
+
 	"github.com/sirupsen/logrus"
 )
 

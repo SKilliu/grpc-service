@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"grpc-service/client/config"
 	"grpc-service/client/server/handlers/coordinates"
+	"grpc-service/client/server/handlers/healthcheck"
 	"log"
 
 	"github.com/pkg/errors"
@@ -16,6 +17,7 @@ import (
 // Provider persist handlers service structures.
 type Provider struct {
 	coordinates *coordinates.Handler
+	healthcheck *healthcheck.Handler
 }
 
 // NewProvider is provider constructor.
@@ -28,5 +30,6 @@ func NewProvider(cfg config.Config) *Provider {
 	client := protogo.NewCoordinatesSaverClient(conn)
 	return &Provider{
 		coordinates: coordinates.New(cfg.Log(), client),
+		healthcheck: healthcheck.New(cfg),
 	}
 }

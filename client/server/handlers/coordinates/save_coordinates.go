@@ -2,11 +2,11 @@ package coordinates
 
 import (
 	"context"
-	"encoding/json"
 	"grpc-service/client/server/errs"
 	"net/http"
 
 	"github.com/SKilliu/grpc-service/proto/protogo"
+	"github.com/labstack/echo/v4"
 )
 
 type SaveCoordinatesReq struct {
@@ -15,14 +15,13 @@ type SaveCoordinatesReq struct {
 	Longitude float32 `json:"longitude"`
 }
 
-func (h *Handler) SaveCoordinates(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) SaveCoordinates(c echo.Context) error {
 	var req SaveCoordinatesReq
 
-	err := json.NewDecoder(r.Body).Decode(&req)
+	err := c.Bind(&req)
 	if err != nil {
 		h.log.WithError(err).Error("failed to decode add device id request")
-		errs.BadRequest(w, errs.BadParamInBodyErr)
-		return
+		return c.JSON(http.StatusBadRequest, errs.BadParamInBodyErr)
 	}
 
 	resp, err := h.grpcClient.SaveCoordinates(context.Background(), &protogo.SaveRequest{
@@ -32,16 +31,8 @@ func (h *Handler) SaveCoordinates(w http.ResponseWriter, r *http.Request) {
 	})
 	if err != nil {
 		h.log.WithError(err).Error("failed to send request to grpc server")
-		errs.InternalError(w)
-		return
+		return c.JSON(http.StatusBadRequest, errs.InternalServerErr)
 	}
 
-	serializedBody, err := json.Marshal(resp)
-	if err != nil {
-		h.log.WithError(err).Error("failed to marshal get item request")
-		errs.InternalError(w)
-		return
-	}
-
-	_, _ = w.Write(serializedBody)
+	return c.JSON(http.StatusOK, resp)
 }
