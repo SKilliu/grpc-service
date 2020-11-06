@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8116d0f-2a6b-44b0-a1f0-bb6c213e4b96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/server/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/grpc_server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +22,7 @@
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.14.2_1/libexec" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../grpc-service" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -47,7 +47,7 @@
       <recent name="$PROJECT_DIR$/cmd/server" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Makefile.run-server">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="grpc-service" />
       <working_directory value="$PROJECT_DIR$" />
@@ -69,6 +69,24 @@
       <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="run-client" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="run-client" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="run-server" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="run-server" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile.run-server" />
+        <item itemvalue="Makefile.run-client" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -82,9 +100,25 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="421" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1604484723781" />
-    <state x="221" y="89" key="SettingsEditor" timestamp="1604485487671">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1604652472245">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604485487671" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1604652472245" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1604652472238">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1604652472238" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1604652472234">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1604652472234" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1604652472241">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1604652472241" />
+    <state x="221" y="89" key="SettingsEditor" timestamp="1604650695063">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604650695063" />
   </component>
 </project>
